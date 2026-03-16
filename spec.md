@@ -37,49 +37,6 @@ The first phase validates the core agent architecture by handling inbound custom
 
 ---
 
-## Architecture
-
-```
-                         ┌──────────────┐
-                         │   Inbound    │
-                         │  (Email /    │
-                         │   Webhook)   │
-                         └──────┬───────┘
-                                │
-                                ▼
-                         ┌──────────────┐
-                         │   FastAPI    │
-                         │   Gateway    │
-                         └──────┬───────┘
-                                │
-                                ▼
-                    ┌───────────────────────┐
-                    │       CrewAI          │
-                    │   Agent Orchestrator  │
-                    │                       │
-                    │  ┌─────┐  ┌────────┐  │
-                    │  │Agent│  │  Agent  │  │
-                    │  │Triage│ │Resolver │  │
-                    │  └──┬──┘  └───┬────┘  │
-                    └─────┼─────────┼───────┘
-                          │         │
-              ┌───────────┼─────────┼───────────┐
-              │           │         │           │
-              ▼           ▼         ▼           ▼
-        ┌──────────┐ ┌────────┐ ┌────────┐ ┌────────┐
-        │mcp-deskpro│ │SQLAlchemy│ │  Email │ │  KB /  │
-        │(CRM UI)  │ │  (ORM)  │ │  Tool  │ │  RAG   │
-        └──────────┘ └────┬───┘ └────────┘ └───┬────┘
-                          │                     │
-                          ▼                     │
-                    ┌───────────┐               │
-                    │PostgreSQL │◄──────────────┘
-                    │+ pgvector │
-                    └───────────┘
-```
-
----
-
 ## Agent Design (CrewAI)
 
 ### Agents
